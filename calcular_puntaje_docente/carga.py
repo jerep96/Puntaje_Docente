@@ -19,15 +19,15 @@ def datosPersonales(dt_entrada, i):
 def formacionAcademica(dt_entrada,i):
 
 	"""Titulos Docente"""
-	cant_titulo_docenete = dt_entrada.iloc[i]['¿Cuántos títulos docente posee?']
-	if cant_titulo_docenete == 'Posee 1 título docente':
-		cant_titulo_docenete = 5
-	if cant_titulo_docenete == 'Posee 2 títulos':
-		cant_titulo_docenete = 6
-	if cant_titulo_docenete == 'Posee más de 2 títulos':
-		cant_titulo_docenete = 7
-	if cant_titulo_docenete == 'No posee':
-		cant_titulo_docenete = 0
+	cant_titulo_docente = dt_entrada.iloc[i]['¿Cuántos títulos docente posee?']
+	if cant_titulo_docente == 'Posee 1 título docente':
+		cant_titulo_docente = 5
+	if cant_titulo_docente == 'Posee 2 títulos':
+		cant_titulo_docente = 6
+	if cant_titulo_docente == 'Posee más de 2 títulos':
+		cant_titulo_docente = 7
+	if cant_titulo_docente == 'No posee':
+		cant_titulo_docente = 0
 
 	"""Otros Titulos"""
 	otro_titulo = dt_entrada.iloc[i]['Si respondió "Sí" en la respuesta anterior, por favor indique el área de su/s título/s. De lo contrario continúe completando el formulario']
@@ -51,10 +51,46 @@ def formacionAcademica(dt_entrada,i):
 	especializacion = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Especialización]']
 	diplomatura = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Diplomatura]']
 	actualizacion_academica = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Actualización Académica]']
-
+	if postitulo == 'No posee':
+		postitulo = 0
+	elif postitulo == 'Doctorado':
+		if doctorado == 'Recibido/a':
+			postitulo = 4
+		elif doctorado == 'Finalizando el cursado de la carrera' || doctorado == 'Tesis pendiente':
+			postitulo = 1
+		else:
+			postitulo = 0
+	elif postitulo == 'Maestría':
+		if maestria == 'Recibido/a':
+			postitulo = 3
+		elif maestria == 'Finalizando el cursado de la carrera' || maestria == 'Tesis pendiente':
+			postitulo = 1
+		else:
+			postitulo = 0
+	elif postitulo == 'Especialización':
+		if especializacion == 'Recibido/a':
+			postitulo = 3
+		elif especializacion == 'Finalizando el cursado de la carrera' || especializacion == 'Tesis pendiente':
+			postitulo = 1
+		else:
+			postitulo = 0
+	elif postítulo == 'Diplomatura':
+		if diplomatura == 'Recibido/a':
+			postitulo = 3
+		elif diplomatura == 'Finalizando el cursado de la carrera' || diplomatura == 'Tesis pendiente':
+			postitulo = 1
+		else:
+			postitulo = 0
+	elif postitulo == 'Actualización Académica':
+		if actualizacion_academica == 'Recibido/a':
+			postitulo = 3
+		elif actualizacion_academica == 'Finalizando el cursado de la carrera' || actualizacion_academica == 'Tesis pendiente':
+			postitulo = 1
+		else:
+			postitulo = 0
 
 	"""Calculo Total Formacion academica"""
-	F_Ac = cant_titulo_docenete + otro_titulo + postitulo
+	F_Ac = cant_titulo_docente + otro_titulo + postitulo
 
 
 """Sub-funcion para calcular Experiencia en dictado de capacitaciones en Experiencias Laborales """
