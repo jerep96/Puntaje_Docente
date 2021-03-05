@@ -93,10 +93,42 @@ def formacionAcademica(dt_entrada,i):
 	F_Ac = cant_titulo_docente + otro_titulo + postitulo
 
 
+	return F_Ac
+
 """Sub-funcion para calcular Experiencia en dictado de capacitaciones en Experiencias Laborales """
 def dictadoCapacitaciones(dt_entrada, i):
-	experiencia_nivel_postulacion = dt_entrada.iloc[i]['¿Posee experiencia como capacitador/a?']
-
+	experiencia_capacitador = dt_entrada.iloc[i]['¿Posee experiencia como capacitador/a?']
+	antiguedad = dt_entrada.iloc[i]['Indique la cantidad de años en total de toda su experiencia como capacitador/a']
+	area_capacitacion = dt_entrada.iloc[i]['Indique el/las área/s en la que realizó la/s capacitacion/es']
+	destinatario = dt_entrada.iloc[i]['Indique el/las área/s en la que realizó la/s capacitacion/es']
+	if experiencia_capacitador == 'No':
+		experiencia_capacitador = 0
+		antiguedad = 0
+		area_capacitacion = 0
+		destinatario = 0
+	else:
+		if antiguedad == '10 o más años':
+			antiguedad = 5
+		elif antiguedad == '5 a 10 años':
+			antiguedad = 4
+		else:
+			antiguedad = 3
+		if area_capacitacion == 'Ciencias Exactas y Naturales' || area_capacitacion == 'Ciencias Sociales- Humanidades- Artística':
+			area_capacitacion = 1
+		elif area_capacitacion ==  'Pedagogía' || area_capacitacion == 'Informática-Tecnología':
+			area_capacitacion = 2
+		elif area_capacitacion == 'En Ninguna':
+			area_capacitacion = 0
+		else:
+			area_capacitacion = 0,5
+		if destinatario == 'Docentes' || destinatario == 'Equipos Técnicos del Ministerio de Educación':
+			destinatario = 1
+		elif destinatario == 'Ninguno':
+			destinatario = 0
+		else:
+			destinatario = 0,5
+	
+	return
 
 """Funcion para calcular la categoria de puntajes Experiencias Laborales"""
 def experienciaLaboral(dt_entrada, i):
@@ -112,6 +144,7 @@ def experienciaLaboral(dt_entrada, i):
 		experiencia_nivel_postulacion = 6
 	if experiencia_nivel_postulacion == 'Ninguna experiencia':
 		experiencia_nivel_postulacion = 0
+
 	"""Experiencia en el sistema educativo"""
 	experiencia_docente_sistema_educativo = dt_entrada.iloc[i]['Experiencia docente en el sistema educativo. (Inicial, Primaria, Secundaria, Superior No Universitaria, Superior Universitaria)']
 	if experiencia_docente_sistema_educativo == 'Hasta 5 años':
@@ -122,6 +155,13 @@ def experienciaLaboral(dt_entrada, i):
 		experiencia_docente_sistema_educativo = 2
 	if experiencia_docente_sistema_educativo == 'Ninguna experiencia'
 		experiencia_docente_sistema_educativo = 0
+
+	"""Experiencia en Capacitaciones"""
+	experiencia_capacitador = dt_entrada.iloc[i]['¿Posee experiencia como capacitador/a?']
+	if experiencia_capacitador == 'Sí' || experiencia_capacitador == 'Si':
+		dictadoCapacitaciones()
+	else:
+		experiencia_capacitador = 0
 
 
 
