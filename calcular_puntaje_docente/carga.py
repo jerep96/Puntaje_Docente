@@ -30,8 +30,62 @@ def formacionAcademica(dt_entrada,i):
 		cant_titulo_docenete = 0
 
 	"""Otros Titulos"""
-	otro_titulo = dt_entrada.iloc[i]['¿Cuántos títulos docente posee?']
+	otro_titulo = dt_entrada.iloc[i]['Si respondió "Sí" en la respuesta anterior, por favor indique el área de su/s título/s. De lo contrario continúe completando el formulario']
+	if otro_titulo = 'Ciencias Exactas y Naturales ':
+		otro_titulo = 1
+	if otro_titulo = 'Ciencias de la Salud':
+		otro_titulo = 1
+	if otro_titulo = 'Ciencias Sociales- Humanidades- Artística':
+		otro_titulo = 3
+	if otro_titulo = 'Educación Física':
+		otro_titulo = 1
+	if otro_titulo = 'Informática-Tecnología':
+		otro_titulo = 3
+	if otro_titulo = 'No posee':
+		otro_titulo = 0
 
+	"""Titulo de Postitulo"""
+	postitulo = dt_entrada.iloc[i]['¿Posee alguna formación de posgrado /postítulo, indique por favor la/s carrera/s?']
+	doctorado = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Doctorado]']
+	maestria = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Maestría]']
+	especializacion = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Especialización]']
+	diplomatura = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Diplomatura]']
+	actualizacion_academica = dt_entrada.iloc[i]['Indique por favor la etapa en la que se encuentra en dicha formación de posgrado/postítulo. [Actualización Académica]']
+
+
+	"""Calculo Total Formacion academica"""
+	F_Ac = cant_titulo_docenete + otro_titulo + postitulo
+
+
+"""Sub-funcion para calcular Experiencia en dictado de capacitaciones en Experiencias Laborales """
+def dictadoCapacitaciones(dt_entrada, i):
+	experiencia_nivel_postulacion = dt_entrada.iloc[i]['¿Posee experiencia como capacitador/a?']
+
+
+"""Funcion para calcular la categoria de puntajes Experiencias Laborales"""
+def experienciaLaboral(dt_entrada, i):
+
+	
+	"""Experiencia en el nivel de Postulacion"""
+	experiencia_nivel_postulacion = dt_entrada.iloc[i]['Experiencia en la docencia en el Nivel en el que se postula ']
+	if experiencia_nivel_postulacion ==  'Hasta 5 años':
+		experiencia_nivel_postulacion = 1
+	if experiencia_nivel_postulacion == 'De 5 a 10 años':
+		experiencia_nivel_postulacion = 3
+	if experiencia_nivel_postulacion == 'Más de 10 años':
+		experiencia_nivel_postulacion = 6
+	if experiencia_nivel_postulacion == 'Ninguna experiencia':
+		experiencia_nivel_postulacion = 0
+	"""Experiencia en el sistema educativo"""
+	experiencia_docente_sistema_educativo = dt_entrada.iloc[i]['Experiencia docente en el sistema educativo. (Inicial, Primaria, Secundaria, Superior No Universitaria, Superior Universitaria)']
+	if experiencia_docente_sistema_educativo == 'Hasta 5 años':
+		experiencia_docente_sistema_educativo = 0,5
+	if experiencia_docente_sistema_educativo == 'De 5 a 10 años'
+		experiencia_docente_sistema_educativo = 1
+	if experiencia_docente_sistema_educativo == 'Más de 10 años'
+		experiencia_docente_sistema_educativo = 2
+	if experiencia_docente_sistema_educativo == 'Ninguna experiencia'
+		experiencia_docente_sistema_educativo = 0
 
 
 
